@@ -1,19 +1,50 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Menu, X } from "lucide-react"; // nice icons
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <nav className="bg-blue-900 text-white p-4 shadow-lg sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <h1 className="font-bold text-2xl tracking-wide">Kenford Progressive Academy</h1>
-        <div className="space-x-6 font-medium">
-          <Link to="/" className="hover:text-yellow-400">Home</Link>
-          <Link to="/about" className="hover:text-yellow-400">About</Link>
-          <Link to="/academics" className="hover:text-yellow-400">Academics</Link>
-          <Link to="/admissions" className="hover:text-yellow-400">Admissions</Link>
-          <Link to="/news" className="hover:text-yellow-400">News</Link>
-          <Link to="/contact" className="hover:text-yellow-400">Contact</Link>
+    <nav className="bg-blue-900 text-white fixed w-full z-20 top-0 left-0 shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo / Brand */}
+          <div className="flex-shrink-0 text-2xl font-bold tracking-wide">
+            Kenford
+          </div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex space-x-6">
+            <Link to="/" className="hover:text-yellow-300">Home</Link>
+            <Link to="/about" className="hover:text-yellow-300">About</Link>
+            <Link to="/academics" className="hover:text-yellow-300">Academics</Link>
+            <Link to="/admissions" className="hover:text-yellow-300">Admissions</Link>
+            <Link to="/contact" className="hover:text-yellow-300">Contact</Link>
+          </div>
+
+          {/* Mobile Button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="focus:outline-none"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-blue-800 px-4 pb-4 space-y-3">
+          <Link to="/" className="block hover:text-yellow-300">Home</Link>
+          <Link to="/about" className="block hover:text-yellow-300">About</Link>
+          <Link to="/academics" className="block hover:text-yellow-300">Academics</Link>
+          <Link to="/admissions" className="block hover:text-yellow-300">Admissions</Link>
+          <Link to="/contact" className="block hover:text-yellow-300">Contact</Link>
+        </div>
+      )}
     </nav>
   );
 }
