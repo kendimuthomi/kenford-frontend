@@ -35,7 +35,7 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 1 }}
             className="text-xl"
           >
-            Excellence • Creativity • Character
+            Excellence • Creativity • Character • Community
           </motion.p>
         </div>
       </section>
